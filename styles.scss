@@ -1,0 +1,121 @@
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+$app-primary: mat-palette($mat-teal);
+$app-accent: mat-palette($mat-red);
+$app-theme: mat-light-theme($app-primary, $app-accent);
+@include angular-material-theme($app-theme);
+
+*, .mat-form-field {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body { 
+  font-family: Roboto, Arial, sans-serif;
+  margin: 0;
+}
+
+.basic-container {
+  padding: 5px;
+}
+
+.version-info {
+  font-size: 8pt;
+  float: right;
+}
+.app-content {
+  padding: 4px;
+  height: 100%;
+}
+/* 
+ Targets following selectors:
+ <a class="mat-button">...</a>
+ <a class="mat-raised-button">...</a>
+ <button class="mat-button">...</button>
+ Does not target following selectors:
+ <a class="mat-button override">...</a>
+ <a class="mat-raised-button" override>...</a>
+*/
+.mat-button:not(.override), .mat-button:not([override]), .mat-raised-button:not(.override), .mat-raised-button:not([override]) {
+  text-transform: uppercase;
+}
+
+.mat-toolbar.mat-primary, .mat-menu-content {
+  background: blue;
+}
+
+.active{
+  color:yellow;
+}
+
+.mat-menu-item{
+  color:white;
+  &:hover{
+    color:yellow;
+  }
+}
+
+.mat-form-field {
+  width: 600px;
+}
+
+mat-form-field, H2{
+  margin-left: 20px;
+}
+
+.mat-optgroup .mat-option:not(.mat-option-multiple)  {
+  height: 35px;
+  line-height: 35px
+}
+
+mat-optgroup.mat-optgroup label.mat-optgroup-label {
+  height: 35px;
+  line-height: 35px;
+  color: blue
+}
+
+.cdk-overlay-pane, .mat-select-panel{
+  max-height: 500px !important;
+}
+
+.ihfo-btn{
+  margin-left: 15px;
+  display: flex;
+  .mat-list-item {
+    margin-right: 30px;
+  }
+}
+
+span.title{
+  color:red;
+}
+
+u{
+  color: red;
+}
+b{
+  color: green;
+}
+.green{
+  color: green;
+  background: yellow;
+}
+
+.example-tooltip-red {
+  background: #b71c1c;
+}
+
+.example-tooltip-green {
+  background:green;
+}
+
+form{
+  padding: 0 20px
+}
+
+H2 {
+  margin-left: 0;
+}

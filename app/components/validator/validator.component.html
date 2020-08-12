@@ -1,0 +1,91 @@
+<div class="ihfo-btn">
+  <a 
+    mat-list-item href="https://webdraftt.com/tutorial/angular-reactive-forms"
+    target="_blank">
+    <button mat-raised-button color="warn">Реактивные формы</button>
+  </a>
+
+  <a 
+    mat-list-item href="https://webdraftt.com/tutorial/forms-validation"
+    target="_blank">
+    <button mat-raised-button color="warn">Валидация</button>
+  </a>
+</div>
+<br>
+<form [formGroup]="myForm" novalidate>
+  <H2>Синхронные валидаторы - добавление и удаление</H2>
+  <div formArrayName="phones">
+    <div class="form-group" *ngFor="let phone of myForm.controls['phones']['controls']; let i = index">
+
+      <mat-form-field class="example-full-width">
+        <input  matInput placeholder="Phones" formControlName="{{i}}"
+              [errorStateMatcher]="matcher">
+        <mat-hint>Errors appear instantly!</mat-hint>
+        <mat-error *ngIf="myForm.controls['phones']['controls'][i].hasError('minlength') && !myForm.controls['phones']['controls'][i].hasError('required')">
+          Введите правильно номер - минимум 9 символов
+        </mat-error>
+        <mat-error *ngIf="myForm.controls['phones']['controls'][i].hasError('required')">
+          Phone is <strong>required</strong>
+        </mat-error>
+        <button mat-button  matSuffix mat-icon-button aria-label="Clear" (click)="clearValidators(i)" matTooltip="Очистить валидаторы" matTooltipClass="example-tooltip-red">
+          <mat-icon style="color:red">close</mat-icon>
+        </button>
+        <button  mat-button  matSuffix mat-icon-button aria-label="Clear" (click)="addValidators(i)" matTooltip="Добавить валидаторы" matTooltipClass="example-tooltip-green">
+          <mat-icon data-id="{{i}}">add</mat-icon>
+        </button>
+      </mat-form-field>
+      </div>
+  </div>
+  <br><br>
+
+  <div class="form-group">
+      <button data-ttt="3"
+        style="margin-right: 10px"
+        mat-raised-button
+        color="primary"
+        [disabled]="myForm.invalid"
+        (click)="addPhone()"
+      >
+        Добавить телефон
+      </button>
+
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="clearErrorValidators()"
+      >
+        Очистить валидаторы у полей с ошибкой
+      </button>
+  </div>
+</form>
+
+<br><hr><hr><br>
+
+<form [formGroup]="asyncForm" novalidate>
+  <H2>Асинхронные и custom_ные валидаторы</H2>
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Номер или (1111/ любую букву) для ошибки" [formControl]="nameFormControl" [errorStateMatcher]="matcher">
+    <mat-hint>Errors appear instantly!</mat-hint>
+
+    <mat-error *ngIf="nameFormControl.hasError('required')">обязательное <strong>поле</strong></mat-error>
+    <mat-error *ngIf="nameFormControl.hasError('name')" >custom_ные валидатор - Введите правильно имя </mat-error>
+    <mat-error *ngIf="nameFormControl.hasError('todo')" >async валидатор -  Ошибочный запрос !!!  </mat-error>
+    
+  </mat-form-field>
+  <br><br>
+
+  <div class="info-btn">
+    <button
+      style="margin-right:10px"
+      mat-raised-button
+      color="primary"
+      (click)="markTouched()"
+    >markAsTouched</button>
+
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="send()"
+    >patchValue</button>
+  </div>
+</form>

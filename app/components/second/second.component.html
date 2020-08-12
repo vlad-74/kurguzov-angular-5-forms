@@ -1,0 +1,49 @@
+<div class="ihfo-btn">
+  <a 
+    mat-list-item href="https://metanit.com/web/angular2/5.5.php"
+    target="_blank">
+    <button mat-raised-button color="warn">FormGroup</button>
+  </a>
+</div>
+<br>
+<form [formGroup]="myForm" novalidate>
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Имя или 111 для ошибки" [formControl]="nameFormControl" [errorStateMatcher]="matcher">
+    <mat-hint>Errors appear instantly!</mat-hint>
+    <mat-error *ngIf="nameFormControl.hasError('minlength') && !nameFormControl.hasError('required')">
+      минимум 2 знака
+    </mat-error>
+    <mat-error *ngIf="nameFormControl.hasError('name') && !nameFormControl.hasError('required')">
+      Введите правильно имя
+    </mat-error>
+    <mat-error *ngIf="nameFormControl.hasError('required')">
+      Email is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+  <br><br>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Email" [formControl]="emailFormControl"
+           [errorStateMatcher]="matcher">
+    <mat-hint>Errors appear instantly!</mat-hint>
+    <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+      Please enter a valid email address
+    </mat-error>
+    <mat-error *ngIf="emailFormControl.hasError('required')">
+      Email is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+  <br><br>
+
+  <div>
+    <button
+      mat-raised-button
+      color="primary"
+      [disabled]="myForm.invalid"
+      (click)="onSubmit(myForm)"
+    >
+      Добавить
+    </button>
+  </div>
+
+</form>

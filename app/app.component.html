@@ -1,0 +1,14 @@
+<mat-toolbar color="primary" class="mat-elevation-z3">
+	<nav>
+    <span class="title">Forms</span>
+    <a routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" mat-button routerLink="main">ngForm</a>
+    <a routerLinkActive="active" mat-button routerLink="second">FormGroup</a>
+    <a routerLinkActive="active" mat-button routerLink="third">FormArray</a>
+    <a routerLinkActive="active" mat-button routerLink="fourth">FormBuilder</a>
+    <a routerLinkActive="active" mat-button routerLink="validator">Validators</a>
+	</nav>
+</mat-toolbar>
+<div class="app-content">
+  <router-outlet></router-outlet>
+</div>
+<br>
